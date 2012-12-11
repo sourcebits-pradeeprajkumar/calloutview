@@ -16,6 +16,7 @@
 		017FD74015D317B1006825B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 017FD73C15D3162C006825B3 /* main.m */; };
 		01A6EE6515D49BD500E895D6 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A6EE6415D49BD500E895D6 /* SMCalloutView.m */; };
 		01A6EE7915D572C300E895D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A6EE7815D572C300E895D6 /* QuartzCore.framework */; };
+		2BB939E61653484400128E7C /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BB939E51653484400128E7C /* white.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		01A6EE6315D49BD500E895D6 /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMCalloutView.h; path = ../SMCalloutView.h; sourceTree = "<group>"; };
 		01A6EE6415D49BD500E895D6 /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMCalloutView.m; path = ../SMCalloutView.m; sourceTree = "<group>"; };
 		01A6EE7815D572C300E895D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2BB939E51653484400128E7C /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				017FD73A15D3162C006825B3 /* CalloutViewSamples-Info.plist */,
 				017FD73B15D3162C006825B3 /* CalloutViewSamples-Prefix.pch */,
 				017FD73C15D3162C006825B3 /* main.m */,
+				2BB939E51653484400128E7C /* white.jpg */,
 				0145C74515D32505007244F3 /* mars.jpg */,
 			);
 			name = "Supporting Files";
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0145C74615D32505007244F3 /* mars.jpg in Resources */,
+				2BB939E61653484400128E7C /* white.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
