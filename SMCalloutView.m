@@ -491,27 +491,27 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // Color Declarations
-    UIColor* fillBlack = [UIColor colorWithRed: 0.11 green: 0.11 blue: 0.11 alpha: 1];
-    UIColor* shadowBlack = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.47];
-    UIColor* glossBottom = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.2];
-    UIColor* glossTop = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.85];
-    UIColor* strokeColor = [UIColor colorWithRed: 0.199 green: 0.199 blue: 0.199 alpha: 1];
-    UIColor* innerShadowColor = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.4];
-    UIColor* innerStrokeColor = [UIColor colorWithRed: 0.821 green: 0.821 blue: 0.821 alpha: 0.04];
-    UIColor* outerStrokeColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.35];
+    UIColor *fillBlack = [UIColor colorWithRed: 0.11 green: 0.11 blue: 0.11 alpha: 1];
+    UIColor *shadowBlack = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.47];
+    UIColor *glossBottom = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.2];
+    UIColor *glossTop = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.85];
+    UIColor *strokeColor = [UIColor colorWithRed: 0.199 green: 0.199 blue: 0.199 alpha: 1];
+    UIColor *innerShadowColor = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.4];
+    UIColor *innerStrokeColor = [UIColor colorWithRed: 0.821 green: 0.821 blue: 0.821 alpha: 0.04];
+    UIColor *outerStrokeColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.35];
     
     // Gradient Declarations
-    NSArray* glossFillColors = [NSArray arrayWithObjects:
+    NSArray *glossFillColors = [NSArray arrayWithObjects:
                                 (id)glossBottom.CGColor,
                                 (id)glossTop.CGColor, nil];
     CGFloat glossFillLocations[] = {0, 1};
     CGGradientRef glossFill = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)glossFillColors, glossFillLocations);
     
     // Shadow Declarations
-    UIColor* baseShadow = shadowBlack;
+    UIColor *baseShadow = shadowBlack;
     CGSize baseShadowOffset = CGSizeMake(0.1, 6.1);
     CGFloat baseShadowBlurRadius = 6;
-    UIColor* innerShadow = innerShadowColor;
+    UIColor *innerShadow = innerShadowColor;
     CGSize innerShadowOffset = CGSizeMake(0.1, 1.1);
     CGFloat innerShadowBlurRadius = 1;
     
@@ -530,7 +530,7 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
         CGContextBeginTransparencyLayer(context, NULL);
         
         // Background Drawing
-        UIBezierPath* backgroundPath = [UIBezierPath bezierPath];
+        UIBezierPath *backgroundPath = [UIBezierPath bezierPath];
         [backgroundPath moveToPoint:CGPointMake(CGRectGetMinX(frame), CGRectGetMinY(frame) + radius)];
         [backgroundPath addLineToPoint:CGPointMake(CGRectGetMinX(frame), CGRectGetMaxY(frame) - radius)]; // left
         [backgroundPath addArcWithCenter:CGPointMake(CGRectGetMinX(frame) + radius, CGRectGetMaxY(frame) - radius) radius:radius startAngle:M_PI endAngle:M_PI / 2 clockwise:NO]; // bottom-left corner
@@ -567,7 +567,7 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
         backgroundBorderRect = CGRectOffset(backgroundBorderRect, -innerShadowOffset.width, -innerShadowOffset.height);
         backgroundBorderRect = CGRectInset(CGRectUnion(backgroundBorderRect, [backgroundPath bounds]), -1, -1);
         
-        UIBezierPath* backgroundNegativePath = [UIBezierPath bezierPathWithRect: backgroundBorderRect];
+        UIBezierPath *backgroundNegativePath = [UIBezierPath bezierPathWithRect: backgroundBorderRect];
         [backgroundNegativePath appendPath: backgroundPath];
         backgroundNegativePath.usesEvenOddFillRule = YES;
         
@@ -603,7 +603,7 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
         anchorInnerRect.size.width -= backgroundStrokeWidth;
         anchorInnerRect.size.height -= backgroundStrokeWidth / 2;
         
-        UIBezierPath* innerStrokePath = [UIBezierPath bezierPath];
+        UIBezierPath *innerStrokePath = [UIBezierPath bezierPath];
         [innerStrokePath moveToPoint:CGPointMake(CGRectGetMinX(innerFrame), CGRectGetMinY(innerFrame) + innerRadius)];
         [innerStrokePath addLineToPoint:CGPointMake(CGRectGetMinX(innerFrame), CGRectGetMaxY(innerFrame) - innerRadius)]; // left
         [innerStrokePath addArcWithCenter:CGPointMake(CGRectGetMinX(innerFrame) + innerRadius, CGRectGetMaxY(innerFrame) - innerRadius) radius:innerRadius startAngle:M_PI endAngle:M_PI / 2 clockwise:NO]; // bottom-left corner
@@ -645,7 +645,7 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
             CGFloat glossRadius = radius + 0.5;
             
             // Gloss Drawing
-            UIBezierPath* glossPath = [UIBezierPath bezierPath];
+            UIBezierPath *glossPath = [UIBezierPath bezierPath];
             [glossPath moveToPoint:CGPointMake(CGRectGetMinX(glossFrame), CGRectGetMinY(glossFrame))];
             [glossPath addLineToPoint:CGPointMake(CGRectGetMinX(glossFrame), CGRectGetMaxY(glossFrame) - glossRadius)]; // left
             [glossPath addArcWithCenter:CGPointMake(CGRectGetMinX(glossFrame) + glossRadius, CGRectGetMaxY(glossFrame) - glossRadius) radius:glossRadius startAngle:M_PI endAngle:M_PI / 2 clockwise:NO]; // bottom-left corner
@@ -683,7 +683,7 @@ NSTimeInterval kSMCalloutViewRepositionDelayForUIScrollView = 1.0/3.0;
     }
     
     // Outer Stroke Drawing
-    UIBezierPath* outerStrokePath = [UIBezierPath bezierPath];
+    UIBezierPath *outerStrokePath = [UIBezierPath bezierPath];
     [outerStrokePath moveToPoint:CGPointMake(CGRectGetMinX(frame), CGRectGetMinY(frame) + radius)];
     [outerStrokePath addLineToPoint:CGPointMake(CGRectGetMinX(frame), CGRectGetMaxY(frame) - radius)]; // left
     [outerStrokePath addArcWithCenter:CGPointMake(CGRectGetMinX(frame) + radius, CGRectGetMaxY(frame) - radius) radius:radius startAngle:M_PI endAngle:M_PI / 2 clockwise:NO]; // bottom-left corner
