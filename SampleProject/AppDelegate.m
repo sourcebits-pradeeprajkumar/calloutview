@@ -58,7 +58,7 @@
     
     bottomPin = [[CustomPinAnnotationView alloc] initWithAnnotation:capeCanaveral reuseIdentifier:@""];
     
-    bottomMapView = [[MKMapView alloc] initWithFrame:CGRectOffset(half, 0, half.size.height)];
+    bottomMapView = [[CustomMapView alloc] initWithFrame:CGRectOffset(half, 0, half.size.height)];
     bottomMapView.delegate = self;
     [bottomMapView addAnnotation:capeCanaveral];
     
@@ -112,12 +112,13 @@
     
     // clear any custom view that was set by another pin
     calloutView.contentView = nil;
+    calloutView.backgroundView = [SMCalloutBackgroundView systemBackgroundView]; // use the system graphics
     
     // This does all the magic.
     [calloutView presentCalloutFromRect:topPin.frame
                                  inView:marsView
                       constrainedToView:scrollView
-               permittedArrowDirections:SMCalloutArrowDirectionDown
+               permittedArrowDirections:SMCalloutArrowDirectionAny
                                animated:YES];
     
     // Here's an alternate method that adds the callout *inside* the pin view. This may seem strange, but it's how MKMapView
@@ -139,8 +140,16 @@
     customView.layer.borderWidth = 1;
     customView.layer.cornerRadius = 4;
 
+    // Uncomment this to demonstrate how you can embed editable controls inside the callout when
+    // used on a MKMapView. It's important that you use our CustomMapView subclass for this to
+    // work on iOS 6 and better.
+//    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 80, 30)];
+//    textField.text = @"Edit Me!";
+//    [customView addSubview:textField];
+
     // if you provide a custom view for the callout content, the title and subtitle will not be displayed
     calloutView.contentView = customView;
+    calloutView.backgroundView = nil; // reset background view to the default SMCalloutDrawnBackgroundView
     
     ((CustomPinAnnotationView *)bottomPin).calloutView = calloutView;
     [calloutView presentCalloutFromRect:bottomPin.bounds
@@ -195,6 +204,12 @@
 
 @end
 
+
+
+//
+// Custom subclasses for using SMCalloutView with MKMapView
+//
+
 @implementation MapAnnotation @end
 
 @implementation CustomPinAnnotationView
@@ -203,6 +218,26 @@
 - (UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *calloutMaybe = [self.calloutView hitTest:[self.calloutView convertPoint:point fromView:self] withEvent:event];
     return calloutMaybe ?: [super hitTest:point withEvent:event];
+}
+
+@end
+
+@interface MKMapView (UIGestureRecognizer)
+
+// this tells the compiler that MKMapView actually implements this method
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
+
+@end
+
+@implementation CustomMapView
+
+// override UIGestureRecognizer's delegate method so we can prevent MKMapView's recognizer from firing
+// when we interact with UIControl subclasses inside our callout view.
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]])
+        return NO;
+    else
+        return [super gestureRecognizer:gestureRecognizer shouldReceiveTouch:touch];
 }
 
 @end
